@@ -6,19 +6,22 @@ const {getAllProducts, getSingleProducts, createAProduct, updateAProduct, delete
 
 
 // get all products
-router.get('/products', getAllProducts)
+// router.get('/products', getAllProducts)
 
 // get a single product
-router.get('/products/:id', getSingleProducts)
+// router.get('/products/:id', getSingleProducts)
 
 // create a product
-router.post("/products", createAProduct)
+// router.post("/products", createAProduct)
 
 //  updating a product
-router.put("/products/:id", updateAProduct)
+// router.put("/products/:id", updateAProduct)
 
 // deleting a product
-router.delete("/products/:id", deleteAProduct)
+// router.delete("/products/:id", deleteAProduct)
+
+router.route('/products').get(getAllProducts).post(createAProduct)
+router.route('/products/:id').get(getSingleProducts).put(updateAProduct).delete(deleteAProduct)
 
 
 module.exports = router
