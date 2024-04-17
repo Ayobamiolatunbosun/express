@@ -4,7 +4,9 @@ const express = require('express');
 const app = express();
 const fs = require('fs')
 // create a port number
-const port = 7070
+const port = 9000
+
+const productRoute = require ("./routes/productRoute")
 
 
 const homePage = fs.readFileSync("./index.html", 'utf-8')
@@ -20,28 +22,33 @@ app.get('/',(req,res)=>{
 
 })
 
-app.get (`/about`,(req,res)=>{
-    res.send(aboutPage)
-})
+// app.get (`/about`,(req,res)=>{
+//     res.send(aboutPage)
+// })
 
-app.get(`/product`,(req,res)=>{
-    res.send(productPage)
-})
+// app.get(`/product`,(req,res)=>{
+//     res.send(productPage)
+// })
 
-app.get(`/contact`,(req,res)=>{
-    res.send(contactPage)
-})
+// app.get(`/contact`,(req,res)=>{
+//     res.send(contactPage)
+// })
 
-app.get(`/testimonial`,(req,res)=>{
-    res.send(testimonialPage)
-})
+// app.get(`/testimonial`,(req,res)=>{
+//     res.send(testimonialPage)
+// })
 
-app.get(`/error`,(req,res)=>{
-    res.send(errorPage)
-})
+// app.get(`/error`,(req,res)=>{
+//     res.send(errorPage)
+// })
 
 
-// start your server
+// using product route
+app.use(productRoute)
+
+// server will now handle json data
+app.use(express.json())
+// // start your server
 app.listen(port, ()=>{
     console.log(`server started successfully. click http://localhost:${port} to open website`)
 })
