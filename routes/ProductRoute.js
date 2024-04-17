@@ -1,56 +1,24 @@
 const express = require('express');
 const { RouterProvider } = require('react-router-dom');
 const router = express.Router()
+const {getAllProducts, getSingleProducts, createAProduct, updateAProduct, deleteAProduct} = require('./controllers/ProductController')
 
 
 
 // get all products
-router.get('/products', (req, res)=>{
-    res.status(200)
-    res.json([
-        {
-            productName : "Iphone 15",
-            productPrice : "$1200",
-        },
-        {
-            productName : "Iphone 13",
-            productPrice : "$1100",
-        }
-    ])
-})
+router.get('/products', getAllProducts)
 
 // get a single product
-router.get('/products/:id', (req, res)=>{
-    res.status(200)
-    res.json({
-        productName : "Iphone 15",
-        productPrice : "$1200",
-    })
-})
+router.get('/products/:id', getSingleProducts)
 
 // create a product
-router.post("/products", (req, res)=>{
-    res.status(200)
-    res.json({
-        message: "Product added successfully"
-    })
-})
+router.post("/products", createAProduct)
 
 //  updating a product
-router.put("/products/:id", (req, res)=>{
-    res.status(200)
-    res.json({
-        message: "Product updated successfully"
-    })
-})
+router.put("/products/:id", updateAProduct)
 
 // deleting a product
-router.delete("/products/:id", (req, res)=>{
-    res.status(200)
-    res.json({
-        message: "product deleted successfully"
-    })
-})
+router.delete("/products/:id", deleteAProduct)
 
 
 module.exports = router
